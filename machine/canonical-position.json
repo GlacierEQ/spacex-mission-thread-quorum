@@ -1,0 +1,42 @@
+{
+  "schema": "glaciereq.canonical-position.v1",
+  "repository": "GlacierEQ/spacex-mission-thread-quorum",
+  "role": "CANONICAL_SPECIALIST",
+  "owns": "freshness_bound_multi_subsystem_quorum_aggregation",
+  "mechanism": {
+    "required_subsystems": "configured unique voter set",
+    "freshness": "decided_at <= evaluation_time <= decided_at + half_life_s",
+    "supersession": "strictly newer decision time only",
+    "freeze_policy": "configured severity threshold for hold-capable NO_GO",
+    "terminal_states": ["GO", "HOLD", "NO_GO", "INCOMPLETE"],
+    "receipt_binding": [
+      "required subsystem policy",
+      "freeze threshold",
+      "evaluation time",
+      "exact live vote fingerprints",
+      "stale/future/missing classifications",
+      "terminal decision and reason"
+    ]
+  },
+  "does_not_own": [
+    "upstream voter or telemetry authentication",
+    "real flight safety or launch go/no-go authority",
+    "hold clearance or hardware actuation",
+    "hold-residual narrative compilation",
+    "SpaceX systems integration or adoption"
+  ],
+  "relationships": [
+    {
+      "repository": "GlacierEQ/spacex-hold-reason-compiler",
+      "relationship": "complementary hold-explanation specialist",
+      "integration_exercised": false,
+      "boundary": "quorum may expose live hold-capable residual tuples, but no executable cross-repository composition receipt is claimed"
+    }
+  ],
+  "proof": {
+    "source_sha": "853882c0e4c4993718b6f4ce3c2cbdc336ba857a",
+    "workflow_run_id": 31398267420,
+    "workflow": "tests",
+    "result": "PASS"
+  }
+}
