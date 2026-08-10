@@ -5,18 +5,35 @@
     "family": "elite-estate"
   },
   "current": {
-    "state": "PROMOTED",
+    "state": "EVOLVING",
     "implemented": true,
     "tested": true,
-    "deployed": false
+    "deployed": false,
+    "canonical_position_resolved": true,
+    "exact_head_proof": {
+      "source_sha": "853882c0e4c4993718b6f4ce3c2cbdc336ba857a",
+      "workflow_run_id": 31398267420,
+      "result": "PASS"
+    }
+  },
+  "canonical_role": "freshness_bound_multi_subsystem_quorum_aggregation",
+  "promotion": {
+    "canonical_gate": "PASS",
+    "next_state": "EVOLVING",
+    "next_cursor": "add_authenticated_vote_provenance_and_receipt_level_hold_compiler_composition"
   },
   "nonclaims": [
     "no employer affiliation",
-    "no production deployment without receipt"
+    "no production deployment without receipt",
+    "no real flight-safety or launch authority",
+    "no upstream voter or telemetry authentication",
+    "no hold clearance or hardware actuation",
+    "no sibling integration without executable composition proof"
   ],
   "donor_plan": {
-    "mode": "none",
-    "donors": []
+    "mode": "preserve-separate-specialists",
+    "donors": [],
+    "siblings": ["GlacierEQ/spacex-hold-reason-compiler"]
   },
-  "frozen_at": "2026-08-10T04:12Z"
+  "frozen_at": "2026-08-10T14:28:00Z"
 }
