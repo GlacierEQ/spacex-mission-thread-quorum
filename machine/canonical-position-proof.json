@@ -1,0 +1,27 @@
+{
+  "schema": "glaciereq.canonical-position-proof.v1",
+  "repository": "GlacierEQ/spacex-mission-thread-quorum",
+  "source_sha": "853882c0e4c4993718b6f4ce3c2cbdc336ba857a",
+  "workflow": {
+    "name": "tests",
+    "run_id": 31398267420,
+    "conclusion": "success"
+  },
+  "verified_invariants": [
+    "future-dated votes do not count as live",
+    "stale and never-seen votes remain distinguishable",
+    "older or equal-timestamp arrivals cannot supersede newer subsystem decisions",
+    "unknown subsystems are refused",
+    "malformed decision/evaluation timing fails closed",
+    "terminal receipts bind policy and exact vote evidence",
+    "GO/HOLD/NO_GO/INCOMPLETE outcomes remain deterministic"
+  ],
+  "claim_ceiling": "independent_reference_quorum_aggregation_only",
+  "nonclaims": [
+    "no production deployment",
+    "no SpaceX affiliation or adoption",
+    "no real launch authority",
+    "no telemetry authentication",
+    "no hardware actuation"
+  ]
+}
