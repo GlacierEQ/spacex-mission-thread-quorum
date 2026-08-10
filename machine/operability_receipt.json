@@ -1,0 +1,26 @@
+{
+  "schema": "glaciereq.operability-receipt.v1",
+  "repository": "GlacierEQ/spacex-mission-thread-quorum",
+  "at": "2026-08-10T04:12Z",
+  "source_sha": "36f68e3f63d347cd74f8b08d86f96dd194e14aa58082777f45b127c6bde083d0",
+  "entry": "scripts/operate.py",
+  "primary_output": {
+    "module": "quorum",
+    "ok": true,
+    "repository": "GlacierEQ/spacex-mission-thread-quorum",
+    "smoke": {
+      "args": [
+        "1.0"
+      ],
+      "content_checked": true,
+      "invoked": true,
+      "kind": "class",
+      "method": "evaluate",
+      "module_local": true,
+      "name": "MissionThreadQuorum",
+      "result": "QuorumReceipt(state=<StackState.INCOMPLETE: 'INCOMPLETE'>, hold_reason='MISSING:weather,propulsion,conjunction,sequencer', live_votes={}, stale_subsystems=(), missing_subsystems=('weather', 'propulsion', 'conjunction', 'sequencer'), fingerprint='94af9b50b36d503e114411ffa7e84fa1bc7d878ff74cb7301304e40b7c476702')"
+    }
+  },
+  "dual_run_ok": true,
+  "result": "PASS"
+}

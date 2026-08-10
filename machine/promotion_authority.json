@@ -1,0 +1,11 @@
+{
+  "schema": "glaciereq.promotion-authority-grant.v1",
+  "repository": "GlacierEQ/spacex-mission-thread-quorum",
+  "source_sha": "36f68e3f63d347cd74f8b08d86f96dd194e14aa58082777f45b127c6bde083d0",
+  "proof_receipt_digest": "d142987b259f667a89d5125a9d1043143d78132e7fdbbb614adf6f9c260f3974",
+  "not_after": 1788927149.234226,
+  "mac": "707a788b2cd2a37b654e44c1e14b821539c5b26c66651e4aebdc1bef4d8ab11b",
+  "issuer": "local_operator_promotion_authority",
+  "verified": true,
+  "secret_ref": "src/promotion_authority.py::LOCAL_OPERATOR_SECRET"
+}
