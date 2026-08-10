@@ -1,1 +1,21 @@
-{"capabilities": ["hyper-scaling"]}
+{
+  "schema": "glaciereq.capability-surface.v1",
+  "repository": "GlacierEQ/spacex-mission-thread-quorum",
+  "capabilities": [
+    "configured_required_subsystem_quorum",
+    "freshness_bounded_vote_authority",
+    "strictly_monotonic_vote_supersession",
+    "future_stale_missing_vote_separation",
+    "severity_threshold_hold_freeze",
+    "deterministic_quorum_policy_fingerprint",
+    "exact_vote_evidence_fingerprint",
+    "terminal_quorum_decision_receipt"
+  ],
+  "truth_boundary": "Independent reference simulation. Aggregates supplied configured-subsystem votes under explicit freshness and freeze policy. It does not authenticate voters or telemetry, decide real flight safety, clear holds, actuate hardware, operate SpaceX systems, or establish integration with sibling repositories.",
+  "relationship_boundary": {
+    "spacex-hold-reason-compiler": {
+      "relationship": "complementary specialist",
+      "integration_exercised": false
+    }
+  }
+}
