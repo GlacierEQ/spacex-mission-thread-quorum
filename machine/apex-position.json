@@ -1,7 +1,7 @@
 {
-  "schema": "glaciereq.canonical-position.v1",
+  "schema": "glaciereq.apex-position.v1",
   "repository": "GlacierEQ/spacex-mission-thread-quorum",
-  "role": "CANONICAL_SPECIALIST",
+  "role": "APEX_SPECIALIST",
   "owns": "freshness_bound_multi_subsystem_quorum_aggregation",
   "mechanism": {
     "required_subsystems": "configured unique voter set",

@@ -9,16 +9,16 @@
     "implemented": true,
     "tested": true,
     "deployed": false,
-    "canonical_position_resolved": true,
+    "apex_position_resolved": true,
     "exact_head_proof": {
       "source_sha": "853882c0e4c4993718b6f4ce3c2cbdc336ba857a",
       "workflow_run_id": 31398267420,
       "result": "PASS"
     }
   },
-  "canonical_role": "freshness_bound_multi_subsystem_quorum_aggregation",
+  "apex_role": "freshness_bound_multi_subsystem_quorum_aggregation",
   "promotion": {
-    "canonical_gate": "PASS",
+    "apex_gate": "PASS",
     "next_state": "EVOLVING",
     "next_cursor": "add_authenticated_vote_provenance_and_receipt_level_hold_compiler_composition"
   },

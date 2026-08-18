@@ -1,5 +1,5 @@
 {
-  "schema": "glaciereq.canonical-position-proof.v1",
+  "schema": "glaciereq.apex-position-proof.v1",
   "repository": "GlacierEQ/spacex-mission-thread-quorum",
   "source_sha": "853882c0e4c4993718b6f4ce3c2cbdc336ba857a",
   "workflow": {
