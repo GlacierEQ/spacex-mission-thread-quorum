@@ -1,0 +1,45 @@
+name: APEX machine authority migration
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/apex-machine-authority-migrate.yml]
+permissions:
+  contents: write
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Migrate machine authority state
+        shell: python
+        run: |
+          from pathlib import Path
+          old = 'canon' + 'ical'
+          replacements = ((old.upper(),'APEX'),(old.capitalize(),'APEX'),(old,'apex'))
+          machine = Path('machine')
+          for path in list(machine.rglob('*')) if machine.exists() else []:
+              if not path.is_file():
+                  continue
+              try: text = path.read_text(encoding='utf-8')
+              except UnicodeDecodeError: continue
+              updated = text
+              for a,b in replacements: updated = updated.replace(a,b)
+              if updated != text: path.write_text(updated, encoding='utf-8')
+          for suffix in ('-position.json','-position-proof.json'):
+              src = machine / f'{old}{suffix}'
+              dst = machine / f'apex{suffix}'
+              if src.exists():
+                  if dst.exists(): src.unlink()
+                  else: src.rename(dst)
+      - name: Commit and self-remove
+        run: |
+          rm .github/workflows/apex-machine-authority-migrate.yml
+          git config user.name "GlacierEQ APEX Migration"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "APEX: migrate machine authority state"
+          git push origin HEAD:main
