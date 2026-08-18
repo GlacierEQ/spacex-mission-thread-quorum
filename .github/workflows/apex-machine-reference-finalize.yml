@@ -1,0 +1,39 @@
+name: APEX machine reference finalize
+on:
+  push:
+    branches: [main]
+    paths: [.github/workflows/apex-machine-reference-finalize.yml]
+permissions: {contents: write}
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - name: Rewrite and verify machine references
+        shell: python
+        run: |
+          from pathlib import Path
+          old='canon'+'ical'; suffixes={'.md','.json','.yaml','.yml','.py','.mjs','.js','.ts','.tsx','.toml','.txt','.csv','.sh','.ps1'}
+          pairs=((f'machine/{old}-position-proof.json','machine/apex-position-proof.json'),(f'machine/{old}-position.json','machine/apex-position.json'),(f'{old}_position','apex_position'),(f'{old}-position','apex-position'),(f'{old}.position','apex.position'))
+          for p in Path('.').rglob('*'):
+              if not p.is_file() or p.suffix.lower() not in suffixes or '.git' in p.parts or p.as_posix()=='.github/workflows/apex-machine-reference-finalize.yml': continue
+              t=p.read_text(encoding='utf-8',errors='ignore'); u=t
+              for a,b in pairs: u=u.replace(a,b).replace(a.upper(),b.upper())
+              if u!=t: p.write_text(u,encoding='utf-8')
+          for s in ('-position.json','-position-proof.json'):
+              src=Path('machine')/f'{old}{s}'; dst=Path('machine')/f'apex{s}'
+              if src.exists(): src.unlink() if dst.exists() else src.rename(dst)
+          needle=f'machine/{old}-position'; residue=[p.as_posix() for p in Path('.').rglob('*') if p.is_file() and '.git' not in p.parts and p.as_posix()!='.github/workflows/apex-machine-reference-finalize.yml' and needle in p.read_text(encoding='utf-8',errors='ignore').lower()]
+          if residue: raise SystemExit('retired machine reference remains: '+', '.join(residue))
+      - name: Self-remove and commit
+        run: |
+          rm .github/workflows/apex-machine-reference-finalize.yml
+          git config user.name "GlacierEQ APEX Migration"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "APEX: finalize machine authority references"
+          git push origin HEAD:main
