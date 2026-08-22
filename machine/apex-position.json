@@ -1,14 +1,19 @@
 {
   "schema": "glaciereq.apex-position.v1",
   "repository": "GlacierEQ/spacex-mission-thread-quorum",
-  "role": "APEX_SPECIALIST",
+  "role": "CANONICAL_SPECIALIST",
   "owns": "freshness_bound_multi_subsystem_quorum_aggregation",
   "mechanism": {
     "required_subsystems": "configured unique voter set",
     "freshness": "decided_at <= evaluation_time <= decided_at + half_life_s",
     "supersession": "strictly newer decision time only",
     "freeze_policy": "configured severity threshold for hold-capable NO_GO",
-    "terminal_states": ["GO", "HOLD", "NO_GO", "INCOMPLETE"],
+    "terminal_states": [
+      "GO",
+      "HOLD",
+      "NO_GO",
+      "INCOMPLETE"
+    ],
     "receipt_binding": [
       "required subsystem policy",
       "freeze threshold",
